@@ -1,0 +1,14 @@
+{
+  "name": "visualised-poems",
+  "version": "0.1.0",
+  "description": "A app that displays the visualised poems",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "author": "Sanne Peters",
+  "license": "MIT",
+  "dependencies": {
+    "coloured-prose": "^1.1.0"
+  }
+}
