@@ -34,8 +34,9 @@ files.forEach(function(file) {
       colouredProse.processText(data);
       var sylJson =  JSON.stringify(colouredProse.syllabelisedText);
       var colouredJson =  JSON.stringify(colouredProse.colourisedText);
-      fs.writeFile(__dirname + targetDir + file + "-syllablised.json", sylJson);
-      fs.writeFile(__dirname + targetDir + file + "-colourised.json", colouredJson);
+      var fileName = file.replace('.txt','').replace(/\s/g, '_');
+      fs.writeFile(__dirname + targetDir + fileName + "-syllabelised.json", sylJson);
+      fs.writeFile(__dirname + targetDir + fileName + "-colourised.json", colouredJson);
     });
   }
 }, this);
