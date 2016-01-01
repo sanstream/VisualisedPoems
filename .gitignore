@@ -1,3 +1,4 @@
 node_modules/
 .tern-project
 node-app/output/
+web-app/source/bundle.js

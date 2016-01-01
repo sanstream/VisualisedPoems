@@ -1,0 +1,30 @@
+  <div class="colourised-text-box">
+    <svg class="colourised-text" ng-attr-height="[[colourisedText.length ]]em">
+      <g class="line"
+        ng-repeat="line in colourisedText track by $index">
+          <rect ng-repeat="colour in line track by $index"
+            class="syllable [[$index]]"
+
+            ng-attr-x="[[$index]]em"
+            ng-attr-y="[[$parent.$index ]]em"
+            ng-attr-fill="[[colour]]">
+          </rect>
+      </g>
+    </svg>
+  </div>
+
+  <figcaption>[[poemTitle]]</figcaption>
+
+    <div ng-switch on="dataPresent" class="text">
+      <div ng-switch-when="false">
+        <textarea name="name" placeholder="Paste your text here" ng-model="rawText"></textarea>
+        <button ng-click="processRawText()">Parse the text</button>
+      </div>
+      <div ng-switch-when="true" class="syllabelised-text">
+        <div ng-repeat="line in syllabelisedText track by $index">
+          <span ng-repeat="syllable in line track by $index" class="syllable">
+            [[syllable]]
+          </span>
+        </div>
+      </div>
+    </div>

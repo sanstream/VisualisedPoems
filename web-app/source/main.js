@@ -13,18 +13,35 @@ VisualisedPoems.controller('VisualisedPoem',['$scope', '$attrs', '$http',
     $scope.syllabelisedText = null;
     $scope.colourisedText = null;
     $scope.dataPresent = false;
+    $scope.rawText = "";
+    // only initiate it when needed.
+    $scope.colouredProse = null;
 
     $scope.convertToPostion = function (index) {
       return index * ($scope.dim + 2);
     };
 
+    $scope.processRawText = function () {
+      if($scope.rawText.length > 0){
+        var colouredProse = getColouredProse();
+        colouredProse.processText(this.rawText);
+        $scope.syllabelisedText = colouredProse.syllabelisedText;
+        $scope.colourisedText = colouredProse.colourisedText;
+      }
+      else{
+
+      }
+    };
+
     $scope.init = function () {
       if($attrs.name){
         var undrScrdName = $attrs.name.replace(/\s/g, '_');
+        var baseUrl = $attrs.outputsrc;
+        $scope.poemTitle = $attrs.name;
 
         $http({
           method: 'GET',
-          url: '/post-resources/VisualisedPoems/node-app/output/' + undrScrdName + '-syllabelised.json'
+          url: baseUrl + undrScrdName + '-syllabelised.json'
         }).success(function(data) {
           $scope.syllabelisedText = data;
         }).error(function(data) {
@@ -33,7 +50,7 @@ VisualisedPoems.controller('VisualisedPoem',['$scope', '$attrs', '$http',
 
         $http({
           method: 'GET',
-          url: '/post-resources/VisualisedPoems/node-app/output/' + undrScrdName + '-colourised.json'
+          url: baseUrl + undrScrdName + '-colourised.json'
         }).success(function(data) {
           $scope.colourisedText = data;
           $scope.dataPresent = true;
@@ -43,4 +60,12 @@ VisualisedPoems.controller('VisualisedPoem',['$scope', '$attrs', '$http',
       }
     };
     $scope.init();
+
+    var getColouredProse = function () {
+      if(!this.colouredProse) {
+        this.colouredProse = new ColouredProse('a,e,i,o,u,y'.split(','));
+      }
+      return this.colouredProse;
+
+    }
 }]);
