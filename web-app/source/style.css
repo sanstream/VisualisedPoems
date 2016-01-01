@@ -1,4 +1,4 @@
-figure.poem .colourised-text-box {
+.poem .colourised-text-box {
   height: 20em;
   overflow-x: hidden;
   overflow-y: auto;
@@ -6,7 +6,7 @@ figure.poem .colourised-text-box {
   background-color: rgb(0, 0, 0);
 }
 
-figure.poem svg g.line rect.syllable {
+.poem svg g.line rect.syllable {
   height: 14px;
   width: 14px;
   stroke: rgb(0, 0, 0);
@@ -14,13 +14,13 @@ figure.poem svg g.line rect.syllable {
   fill-opacity: 0.7;
 }
 
-figure.poem figcaption {
+.poem figcaption {
   font-style: italic;
   margin: 1em 0;
   min-height: 2.5em;
 }
 
-figure.poem .syllabelised-text {
+.poem .syllabelised-text {
   font-style: italic;
   height: 10em;
   overflow-x: hidden;
@@ -29,7 +29,7 @@ figure.poem .syllabelised-text {
   background-color: #F7F5F5;
 }
 
-figure.poem .syllabelised-text .syllable{
+.poem .syllabelised-text .syllable{
   background-color: #DADADA;
   border-radius: 0.25em;
   padding: 0.25em;
@@ -38,17 +38,17 @@ figure.poem .syllabelised-text .syllable{
   display: inline-block;
 }
 
-figure.poem input[type='submit'],
-figure.poem textarea {
+.poem input[type='submit'],
+.poem textarea {
   display: block;
   margin: 1em 0;
   width: 100%;
 }
 
-figure.poem textarea {
+.poem textarea {
   height: 7em;
 }
 
-figure.poem input[type='submit'] {
+.poem input[type='submit'] {
   height: 2em;
 }
