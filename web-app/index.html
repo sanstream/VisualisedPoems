@@ -12,6 +12,12 @@
   <body>
     <h1>Visualised poems</h1>
     <div ng-app="VisualisedPoems" id="visualised-poems">
+
+      <h3>Parse your own poem</h3>
+      <figure class="poem" ng-controller="VisualisedPoem"
+        ng-include="'templates/visualised-poem.html'">
+      </figure>
+
       <section id="preparsed-poem">
         <div ng-controller="VisualisedPoem"
           data-name="A dream within a dream - Edgar Allen Poe"
@@ -19,11 +25,6 @@
           <figure class="poem" ng-include="'templates/visualised-poem.html'"></figure>
         </div>
       </section>
-
-      <h3>Parse your own poem</h3>
-      <figure class="poem" ng-controller="VisualisedPoem"
-        ng-include="'templates/visualised-poem.html'">
-      </figure>
     </div>
   </body>
 </html>

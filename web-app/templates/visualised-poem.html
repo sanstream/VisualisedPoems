@@ -15,16 +15,21 @@
 
   <figcaption>[[poemTitle]]</figcaption>
 
-    <div ng-switch on="dataPresent" class="text">
-      <div ng-switch-when="false">
-        <textarea name="name" placeholder="Paste your text here" ng-model="rawText"></textarea>
-        <button ng-click="processRawText()">Parse the text</button>
-      </div>
-      <div ng-switch-when="true" class="syllabelised-text">
+    <div class="text">
+
+      <div class="syllabelised-text">
         <div ng-repeat="line in syllabelisedText track by $index">
           <span ng-repeat="syllable in line track by $index" class="syllable">
             [[syllable]]
           </span>
         </div>
+      </div>
+
+
+      <div ng-if="hasAssocPoem === false">
+        <form ng-submit='processRawText()'>
+          <textarea name="name" placeholder="Paste your text here" ng-model="rawText"></textarea>
+          <input value='Parse the text' type="submit">
+        </form>
       </div>
     </div>

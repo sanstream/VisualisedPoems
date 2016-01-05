@@ -13,23 +13,26 @@ VisualisedPoems.controller('VisualisedPoem',['$scope', '$attrs', '$http',
     $scope.syllabelisedText = null;
     $scope.colourisedText = null;
     $scope.dataPresent = false;
-    $scope.rawText = "";
-    // only initiate it when needed.
+    // Used to initially show and hide components:
+    $scope.hasAssocPoem = Boolean($attrs.name);
+    // Both only initiated when needed:
     $scope.colouredProse = null;
+    $scope.rawText = null;
 
     $scope.convertToPostion = function (index) {
       return index * ($scope.dim + 2);
     };
 
     $scope.processRawText = function () {
-      if($scope.rawText.length > 0){
+      if(this.rawText && this.rawText.length > 0){
         var colouredProse = getColouredProse();
         colouredProse.processText(this.rawText);
         $scope.syllabelisedText = colouredProse.syllabelisedText;
         $scope.colourisedText = colouredProse.colourisedText;
+        $scope.dataPresent = true;
       }
-      else{
-
+      else {
+        $scope.dataPresent = false;
       }
     };
 
