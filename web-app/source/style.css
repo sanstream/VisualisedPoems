@@ -1,5 +1,27 @@
+/**
+ * flexed layout:
+ */
+.poem .text-box{
+  display: flex;
+}
+.poem .text-box .colourised-text-box {
+  flex: 0 0 1;
+}
+
+.poem .text-box .interactive-panel {
+  flex: 1;
+  margin-left: 1em;
+  display: flex;
+  flex-direction: column;
+}
+
+.poem .text-box .interactive-panel > * {
+  flex: 1;
+}
+
 .poem .colourised-text-box {
   height: 20em;
+  width: 300px; /* The same width as the containing svg */
   overflow-x: hidden;
   overflow-y: auto;
   padding: 1em;
@@ -41,14 +63,15 @@
 .poem input[type='submit'],
 .poem textarea {
   display: block;
-  margin: 1em 0;
   width: 100%;
 }
 
 .poem textarea {
   height: 7em;
+  margin: 1em 0;
 }
 
 .poem input[type='submit'] {
   height: 2em;
+  margin: 1em 0 0 0;
 }
