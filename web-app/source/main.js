@@ -19,10 +19,6 @@ VisualisedPoems.controller('VisualisedPoem',['$scope', '$attrs', '$http',
     $scope.colouredProse = null;
     $scope.rawText = null;
 
-    $scope.convertToPostion = function (index) {
-      return index * ($scope.dim + 2);
-    };
-
     $scope.processRawText = function () {
       if(this.rawText && this.rawText.length > 0){
         var colouredProse = getColouredProse();
