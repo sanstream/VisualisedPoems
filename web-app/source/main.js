@@ -32,6 +32,8 @@ VisualisedPoems.controller('VisualisedPoem',['$scope', '$attrs', '$http',
         $scope.dataPresent = true;
       }
       else {
+        $scope.syllabelisedText = null;
+        $scope.colourisedText = null;
         $scope.dataPresent = false;
       }
     };
@@ -46,7 +48,7 @@ VisualisedPoems.controller('VisualisedPoem',['$scope', '$attrs', '$http',
           method: 'GET',
           url: baseUrl + undrScrdName + '-syllabelised.json'
         }).success(function(data) {
-          $scope.syllabelisedText = data;
+          $scope.syllabelisedText = decorate(data);
         }).error(function(data) {
           console.error(data);
         });
@@ -55,13 +57,14 @@ VisualisedPoems.controller('VisualisedPoem',['$scope', '$attrs', '$http',
           method: 'GET',
           url: baseUrl + undrScrdName + '-colourised.json'
         }).success(function(data) {
-          $scope.colourisedText = data;
+          $scope.colourisedText = decorate(data);
           $scope.dataPresent = true;
         }).error(function(data) {
           console.error(data);
         });
       }
     };
+
     $scope.init();
 
     var getColouredProse = function () {
@@ -70,5 +73,21 @@ VisualisedPoems.controller('VisualisedPoem',['$scope', '$attrs', '$http',
       }
       return this.colouredProse;
 
+    };
+
+    /**
+     * Decorates the raw data with some extra properties
+     * @param  {Array[]} rawData A nested array of which the elements of the nested arrays get decorated.
+     * @return {Array[]}      The decorated version of the data.
+     */
+    decorate = function (rawData) {
+      return data.map(function (line) {
+        return line.map(function (syllable) {
+          return {
+            data: syllable,
+            highlighted: false
+          };
+        });
+      });
     }
 }]);
