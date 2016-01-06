@@ -27,10 +27,13 @@
   padding: 1em;
   background-color: rgb(0, 0, 0);
 }
+.poem .colourised-text-box svg{
+  font-size: 1.5em;
+}
 
 .poem svg g.line rect.syllable {
-  height: 14px;
-  width: 14px;
+  height: 1em;
+  width: 1em;
   stroke: rgb(0, 0, 0);
   stroke-width: 2px;
   fill-opacity: 0.7;
@@ -59,7 +62,9 @@
   margin: 0 0.25em 0.25em 0;
   display: inline-block;
 }
-
+/**
+ * Form layout:
+ */
 .poem input[type='submit'],
 .poem textarea {
   display: block;
@@ -74,4 +79,25 @@
 .poem input[type='submit'] {
   height: 2em;
   margin: 1em 0 0 0;
+}
+
+/**
+ * syllable highlighting animations:
+ */
+.poem svg .syllable{
+  transition: fill-opacity 0.2s ease-out, stroke-width 0.2s ease-out;
+}
+
+.poem svg .syllable.highlight{
+  fill-opacity: 1 !important;
+  fill: rgba(255,255,255,0.9) !important;
+  stroke-width: 0px !important;
+}
+
+.poem .syllabelised-text .syllable{
+  transition: background-color 0.2s ease-out;
+}
+
+.poem .syllabelised-text .syllable.highlight{
+  background-color: #fff;
 }

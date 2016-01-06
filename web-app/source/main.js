@@ -7,6 +7,12 @@ var VisualisedPoems = angular.module('VisualisedPoems',[],
   }
 );
 
+VisualisedPoems.filter('highlight', function() {
+  return function(isHighlighted) {
+    return isHighlighted ? 'highlight' : '';
+  };
+});
+
 VisualisedPoems.controller('VisualisedPoem',['$scope', '$attrs', '$http',
   function ($scope, $attrs, $http){
 
@@ -23,8 +29,8 @@ VisualisedPoems.controller('VisualisedPoem',['$scope', '$attrs', '$http',
       if(this.rawText && this.rawText.length > 0){
         var colouredProse = getColouredProse();
         colouredProse.processText(this.rawText);
-        $scope.syllabelisedText = colouredProse.syllabelisedText;
-        $scope.colourisedText = colouredProse.colourisedText;
+        $scope.syllabelisedText = decorate(colouredProse.syllabelisedText);
+        $scope.colourisedText = decorate(colouredProse.colourisedText);
         $scope.dataPresent = true;
       }
       else {
@@ -61,6 +67,11 @@ VisualisedPoems.controller('VisualisedPoem',['$scope', '$attrs', '$http',
       }
     };
 
+    $scope.highlightSyllable = function (parentIdx, idx, state) {
+      this.colourisedText[parentIdx][idx]['isHighlighted'] = state;
+      this.syllabelisedText[parentIdx][idx]['isHighlighted'] = state;
+    }
+
     $scope.init();
 
     var getColouredProse = function () {
@@ -77,11 +88,11 @@ VisualisedPoems.controller('VisualisedPoem',['$scope', '$attrs', '$http',
      * @return {Array[]}      The decorated version of the data.
      */
     decorate = function (rawData) {
-      return data.map(function (line) {
+      return rawData.map(function (line) {
         return line.map(function (syllable) {
           return {
             data: syllable,
-            highlighted: false
+            isHighlighted: false
           };
         });
       });

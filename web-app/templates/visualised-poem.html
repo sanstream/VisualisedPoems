@@ -5,11 +5,13 @@
       <g class="line"
         ng-repeat="line in colourisedText track by $index">
           <rect ng-repeat="colour in line track by $index"
-            class="syllable [[$index]] [[colour.isHighlighted]]"
-
-            ng-attr-x="[[$index]]em"
-            ng-attr-y="[[$parent.$index ]]em"
-            ng-attr-fill="[[colour.data]]">
+            class="syllable [[colour.isHighlighted | highlight ]]"
+            ng-attr-x="[[$index * 1.2]]em"
+            ng-attr-y="[[$parent.$index * 1.2]]em"
+            ng-attr-fill="[[colour.data]]"
+            ng-mouseenter="highlightSyllable($parent.$index,$index,true)"
+            ng-mouseleave="highlightSyllable($parent.$index,$index,false)"
+            >
           </rect>
       </g>
     </svg>
@@ -18,7 +20,10 @@
   <section class="interactive-panel">
     <div class="syllabelised-text">
       <div ng-repeat="line in syllabelisedText track by $index">
-        <span ng-repeat="syllable in line track by $index" class="syllable [[syllable.isHighlighted]]" ng-click="handleSyllableClick($parent.$index,$index)">
+        <span ng-repeat="syllable in line track by $index" class="syllable [[syllable.isHighlighted | highlight ]]"
+          ng-mouseenter="highlightSyllable($parent.$index,$index,true)"
+          ng-mouseleave="highlightSyllable($parent.$index,$index,false)"
+          >
           [[syllable.data]]
         </span>
       </div>
