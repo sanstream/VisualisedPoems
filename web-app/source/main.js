@@ -98,3 +98,31 @@ VisualisedPoems.controller('VisualisedPoem',['$scope', '$attrs', '$http',
       });
     }
 }]);
+
+VisualisedPoems.directive('syncscroll', [function(){
+	var scrollTop = 0;
+	function combine(elements){
+
+    var elements = Array.prototype.slice.call(elements);
+
+    elements.forEach(function (element) {
+      element.addEventListener('scroll', function(e){
+
+  				scrollTop = e.target.scrollTop;
+  				elements.forEach(function (element) {
+  					if( element !== e.target ){
+              element.scrollTop = scrollTop;
+  					}
+  				});
+      });
+  	});
+	}
+
+	return {
+		restrict: 'A',
+		replace: false,
+		compile: function(element, attrs){
+			combine(element[0].querySelectorAll('.'+attrs.syncscroll));
+		}
+	};
+}]);

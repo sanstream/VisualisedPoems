@@ -1,7 +1,7 @@
-<div class="text-box">
+<div class="text-box" syncscroll="scroll-box">
 
-  <div class="colourised-text-box">
-    <svg class="colourised-text" ng-attr-height="[[colourisedText.length ]]em">
+  <div class="colourised-text-box scroll-box">
+    <svg class="colourised-text" ng-attr-height="[[colourisedText.length * 1.2]]em">
       <g class="line"
         ng-repeat="line in colourisedText track by $index">
           <rect ng-repeat="colour in line track by $index"
@@ -18,7 +18,7 @@
   </div>
 
   <section class="interactive-panel">
-    <div class="syllabelised-text">
+    <div class="syllabelised-text scroll-box">
       <div ng-repeat="line in syllabelisedText track by $index">
         <span ng-repeat="syllable in line track by $index" class="syllable [[syllable.isHighlighted | highlight ]]"
           ng-mouseenter="highlightSyllable($parent.$index,$index,true)"
